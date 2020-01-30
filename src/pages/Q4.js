@@ -1,59 +1,82 @@
 import React, { Component } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import ToolkitProvider, {
-    Search,
-    CSVExport
-} from "react-bootstrap-table2-toolkit";
-import axios from "axios";
 
 import { withRouter } from "react-router-dom";
-import { getApi } from '../api/get';
-import { deleteApi } from '../api/delete';
+import {
+    ValidationForm,
+    TextInput,
+} from "react-bootstrap4-form-validation";
+
+import { getApi } from '../api/get'
+import { postApiQ4 } from '../api/post'
+
+async function postHandler(e, inputs) {
+    e.preventDefault();
+    e.target.reset();
+    console.log(inputs);
+
+    var map = new Map()
+
+    map["teacher"] = inputs[0]
+    map["notification"] = inputs["notification"]
+
+    console.log("my map" + JSON.stringify(map))
 
 
-const { SearchBar, ClearSearchButton } = Search;
-const { ExportCSVButton } = CSVExport;
+    var result = await postApiQ4("http://localhost:3001/api/retrievefornotifications", map)
 
-function updateHandler() {
-    // console.log("update");
-}
+    console.log("whats result + " + JSON.stringify(result))
 
-async function deleteHandler(cellContent, row) {
-    // console.log(cellContent);
-    // console.log(row.id);
-    // console.log("delete");
-
-    await deleteApi(`http://localhost:3001/userside/delete`, { "id": row.id })
-}
-
-
-
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc"
+    if (result == undefined) {
+        window.alert("student records not found");
+    } else {
+        window.alert(result);
     }
-];
 
-var data = [];
+    // if (result == undefined) {
+    //     window.alert("teacher record not found");
+    // } else {
+    //     window.alert("suspended");
+    // }
+}
+
+const teacherList = ["teacher"];
 
 class Q4 extends Component {
 
+    state = {
+        array: teacherList,
+    }
+
     async componentDidMount() {
-        let details = await getApi(`http://localhost:3001/userside/getUserDataTable`)
-        if (details) {
-            this.setState({
-                data: details
-            })
-        }
-        // console.log(details)
-        // console.log("yoyo!!" + JSON.stringify(this.state.data));
+        postHandler = postHandler.bind(this)
+        console.log(this.state.array)
     }
 
     render() {
         return (
-            <div>Im Q4</div>
+            <>
+                <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
+                    <h4>Im Q4</h4>
+
+                    {this.state.array.map(
+                        (arrayE, index) => (
+                            <div className="form-group">
+                                <label htmlFor={index}>{arrayE}</label>
+                                <TextInput name={index} id={index} type="email" required />
+                            </div>
+                        )
+                    )}
+
+                    <div className="form-group">
+                        <label htmlFor="notification">notification</label>
+                        <TextInput name="notification" id="notification" required />
+                    </div>
+
+                    <div className="form-group">
+                        <button className="btn btn-primary">Send</button>
+                    </div>
+                </ValidationForm>
+            </>
         );
     }
     nextPath(path) {

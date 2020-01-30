@@ -19,25 +19,6 @@ async function postHandler(e, inputs) {
 
     map["student"] = inputs[0]
 
-
-    // var requestString = ``;
-
-    // Object.keys(inputs).map((key) => {
-    //     console.log(inputs[key])
-    //     if (key == 0) {
-    //         var para = `teacher=` + inputs[key]
-    //         requestString += para;
-    //     } else {
-    //         var para = `&teacher=` + inputs[key]
-    //         requestString += para;
-    //     }
-    // })
-
-    // console.log('http://localhost:3001/api/commonstudents?' + requestString)
-
-    // var answer = await getApi(`http://localhost:3001/api/commonstudents?` + requestString)
-    // console.log(answer)
-
     console.log("my map" + JSON.stringify(map))
 
     var result = await postApi("http://localhost:3001/api/suspend", map)
