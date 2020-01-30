@@ -14,10 +14,10 @@ class MyNavbar extends Component {
         <Navbar bg="dark" variant="dark">
           {/* <Navbar.Brand href="#home">Company Logo</Navbar.Brand> */}
           <Nav className="mr-auto">
-            <Nav.Link href="/Q1">Q1</Nav.Link>
-            <Nav.Link href="/Q2">Q2</Nav.Link>
-            <Nav.Link href="/Q3">Q3</Nav.Link>
-            <Nav.Link href="/Q4">Q4</Nav.Link>
+            <Nav.Link href="/Q1">Question1</Nav.Link>
+            <Nav.Link href="/Q2">Question2</Nav.Link>
+            <Nav.Link href="/Q3">Question3</Nav.Link>
+            <Nav.Link href="/Q4">Question4</Nav.Link>
           </Nav>
         </Navbar>
         <br />
