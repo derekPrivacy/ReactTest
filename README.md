@@ -2,9 +2,9 @@ This ReactTest project serve as front-end GUI interface for the NodejsTest proje
 
 1. set up NodejsTest project according to the instruction given in https://github.com/derekPrivacy/NodejsTest readme.md
 
-2. pull this repo and cd into \myreact-master folder and do command 
+2. pull this repo and do command 
    `yarn`  \
-   this will install all the dependency and pacakges required to run
+   in the same directory , this will install all the dependency and pacakges required to run
 
 3.  `yarn start` \
     do it at the same directory , then should see the console message:
