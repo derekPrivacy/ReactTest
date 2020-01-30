@@ -65,7 +65,6 @@ class Q3 extends Component {
                         <button className="btn btn-primary">Suspend</button>
                     </div>
                 </ValidationForm>
-
             </>
         );
     }

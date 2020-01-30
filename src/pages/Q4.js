@@ -28,23 +28,24 @@ async function postHandler(e, inputs) {
 
     if (result == undefined) {
         window.alert("student records not found");
+        this.setState({
+            recipients: recipientList
+        })
     } else {
-        window.alert(result);
+        this.setState({
+            recipients: result
+        })
     }
-
-    // if (result == undefined) {
-    //     window.alert("teacher record not found");
-    // } else {
-    //     window.alert("suspended");
-    // }
 }
 
 const teacherList = ["teacher"];
+const recipientList = [];
 
 class Q4 extends Component {
 
     state = {
         array: teacherList,
+        recipients: recipientList
     }
 
     async componentDidMount() {
@@ -76,6 +77,12 @@ class Q4 extends Component {
                         <button className="btn btn-primary">Send</button>
                     </div>
                 </ValidationForm>
+                <div>search results:</div>
+                {this.state.recipients.map(
+                    (arrayE, index) => (
+                        <li>{arrayE}</li>
+                    )
+                )}
             </>
         );
     }
