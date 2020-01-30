@@ -30,6 +30,11 @@ async function postHandler(e, inputs) {
 
     var answer = await getApi(`http://localhost:3001/api/commonstudents?` + requestString)
     console.log(answer)
+
+    this.setState({
+        array: teacherList,
+        result: answer
+    })
 }
 
 const teacherList = ["teacher", "teacher"];
