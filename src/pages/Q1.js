@@ -35,62 +35,74 @@ async function deleteHandler(cellContent, row) {
 
 async function postHandler(e, inputs) {
     e.preventDefault();
+    e.target.reset();
     console.log(inputs);
+
+    // console.log(inputs["teacher"])
 
     var map = new Map()
 
-    map["teacher"] = "gg@gmial.com"
-    map["students"] = ["hehhe.com", "haha.com"]
+    map["students"] = []
+
+    Object.keys(inputs).map((key) => {
+        if (key != "teacher") {
+            console.log(key + inputs[key])
+            map["students"].push(inputs[key])
+        } else {
+            map["teacher"] = inputs[key]
+        }
+    })
 
     console.log("my map" + JSON.stringify(map))
 
     await postApi("http://localhost:3001/api/register", map)
+
+    this.setState({
+        array: studentList
+    })
+
+    window.alert("record added");
 }
 
-function shoot() {
-    console.log("shotted?");
-}
-
+const studentList = ["student", "student"];
 
 class Q1 extends Component {
 
-    array = ["student", "student", "student"]
+    state = {
+        array: studentList
+    }
 
     async componentDidMount() {
-        let details = await getApi(`http://localhost:3001/userside/getUserDataTable`)
-        if (details) {
-            this.setState({
-                data: details
-            })
-        }
-        // console.log(details)
-        // console.log("yoyo!!" + JSON.stringify(this.state.data));
+        postHandler = postHandler.bind(this)
+        console.log(this.state.array)
     }
 
     render() {
         return (
             <>
                 <div >
-                    <button className="btn btn-primary" onClick={shoot}>add more student</button>
+                    <button className="btn btn-primary" onClick={() => {
+                        this.setState({ array: [...this.state.array, "student"] })
+                        console.log(this.state.array)
+
+                    }}>add student</button>
                 </div>
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
                     <h4>Im Q1</h4>
 
                     <div className="form-group">
                         <label htmlFor="teacher">teacher</label>
-                        <TextInput name="teacher" id="teacher" required />
+                        <TextInput name="teacher" id="teacher" type="email" required />
                     </div>
 
-                    {this.array.map(arrayE =>
-                        <div className="form-group">
-                            <label htmlFor={arrayE}>student</label>
-                            <TextInput name={arrayE} id={arrayE} required />
-                        </div>
+                    {this.state.array.map(
+                        (arrayE, index) => (
+                            <div className="form-group">
+                                <label htmlFor={index}>{arrayE}</label>
+                                <TextInput name={index} id={index} type="email" required />
+                            </div>
+                        )
                     )}
-                    {/* <div className="form-group">
-                        <label htmlFor="student0">student0</label>
-                        <TextInput name="student0" id="student0" required />
-                    </div> */}
 
                     <div className="form-group">
                         <button className="btn btn-primary">Submit</button>
