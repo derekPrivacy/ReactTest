@@ -1,59 +1,91 @@
 import React, { Component } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import ToolkitProvider, {
-    Search,
-    CSVExport
-} from "react-bootstrap-table2-toolkit";
-import axios from "axios";
 
 import { withRouter } from "react-router-dom";
-import { getApi } from '../api/get';
-import { deleteApi } from '../api/delete';
+import {
+    ValidationForm,
+    TextInput,
+} from "react-bootstrap4-form-validation";
 
+import { getApi } from '../api/get'
 
-const { SearchBar, ClearSearchButton } = Search;
-const { ExportCSVButton } = CSVExport;
+async function postHandler(e, inputs) {
+    e.preventDefault();
+    e.target.reset();
+    console.log(inputs);
 
-function updateHandler() {
-    // console.log("update");
+    var requestString = ``;
+
+    Object.keys(inputs).map((key) => {
+        console.log(inputs[key])
+        if (key == 0) {
+            var para = `teacher=` + inputs[key]
+            requestString += para;
+        } else {
+            var para = `&teacher=` + inputs[key]
+            requestString += para;
+        }
+    })
+
+    console.log('http://localhost:3001/api/commonstudents?' + requestString)
+
+    var answer = await getApi(`http://localhost:3001/api/commonstudents?` + requestString)
+    console.log(answer)
 }
 
-async function deleteHandler(cellContent, row) {
-    // console.log(cellContent);
-    // console.log(row.id);
-    // console.log("delete");
+const teacherList = ["teacher", "teacher"];
+const searchResult = [];
 
-    await deleteApi(`http://localhost:3001/userside/delete`, { "id": row.id })
-}
+class Q1 extends Component {
 
-
-
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc"
+    state = {
+        array: teacherList,
+        result: searchResult
     }
-];
-
-var data = [];
-
-class Q2 extends Component {
 
     async componentDidMount() {
-        let details = await getApi(`http://localhost:3001/userside/getUserDataTable`)
-        if (details) {
-            this.setState({
-                data: details
-            })
-        }
-        // console.log(details)
-        // console.log("yoyo!!" + JSON.stringify(this.state.data));
+        postHandler = postHandler.bind(this)
+        console.log(this.state.array)
     }
 
     render() {
         return (
-            <div>Im Q2</div>
+            <>
+                <div>
+                    <button className="btn btn-primary" onClick={() => {
+                        this.setState({ array: [...this.state.array, "teacher"] })
+                        console.log(this.state.array)
+
+                    }}>add teacher</button>
+                </div>
+                <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
+                    <h4>Im Q2</h4>
+
+                    {/* <div className="form-group">
+                        <label htmlFor="teacher">teacher</label>
+                        <TextInput name="teacher" id="teacher" type="email" required />
+                    </div> */}
+
+                    {this.state.array.map(
+                        (arrayE, index) => (
+                            <div className="form-group">
+                                <label htmlFor={index}>{arrayE}</label>
+                                <TextInput name={index} id={index} type="email" required />
+                            </div>
+                        )
+                    )}
+
+                    <div className="form-group">
+                        <button className="btn btn-primary">Search</button>
+                    </div>
+                </ValidationForm>
+                <div>common students:</div>
+                {this.state.result.map(
+                    (arrayE, index) => (
+                        <li>{arrayE}</li>
+                    )
+                )}
+
+            </>
         );
     }
     nextPath(path) {
@@ -61,4 +93,4 @@ class Q2 extends Component {
     }
 }
 
-export default withRouter(Q2);
+export default withRouter(Q1);

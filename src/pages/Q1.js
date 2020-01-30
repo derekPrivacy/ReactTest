@@ -1,37 +1,12 @@
 import React, { Component } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import ToolkitProvider, {
-    Search,
-    CSVExport
-} from "react-bootstrap-table2-toolkit";
-import axios from "axios";
 
 import { withRouter } from "react-router-dom";
-import { getApi } from '../api/get';
-import { deleteApi } from '../api/delete';
 import {
     ValidationForm,
     TextInput,
 } from "react-bootstrap4-form-validation";
 
 import { postApi } from '../api/post'
-
-
-const { SearchBar, ClearSearchButton } = Search;
-const { ExportCSVButton } = CSVExport;
-
-function updateHandler() {
-    // console.log("update");
-}
-
-async function deleteHandler(cellContent, row) {
-    // console.log(cellContent);
-    // console.log(row.id);
-    // console.log("delete");
-
-    await deleteApi(`http://localhost:3001/userside/delete`, { "id": row.id })
-}
 
 async function postHandler(e, inputs) {
     e.preventDefault();
