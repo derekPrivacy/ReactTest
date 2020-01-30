@@ -50,7 +50,7 @@ class Q3 extends Component {
         return (
             <>
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
-                    <h4>Im Q3</h4>
+                    <h4>Suspend a specified student</h4>
 
                     {this.state.array.map(
                         (arrayE, index) => (

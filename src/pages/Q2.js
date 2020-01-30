@@ -55,6 +55,7 @@ class Q2 extends Component {
     render() {
         return (
             <>
+                <h4>Retrieve a list of students common to a given list of teachers</h4>
                 <div>
                     <button className="btn btn-primary" onClick={() => {
                         this.setState({ array: [...this.state.array, "teacher"] })
@@ -63,8 +64,6 @@ class Q2 extends Component {
                     }}>add teacher</button>
                 </div>
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
-                    <h4>Im Q2</h4>
-
                     {this.state.array.map(
                         (arrayE, index) => (
                             <div className="form-group">
@@ -84,7 +83,6 @@ class Q2 extends Component {
                         <li>{arrayE}</li>
                     )
                 )}
-
             </>
         );
     }

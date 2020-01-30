@@ -57,7 +57,7 @@ class Q4 extends Component {
         return (
             <>
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
-                    <h4>Im Q4</h4>
+                    <h4>Send a notification and showing the list of recipients</h4>
 
                     {this.state.array.map(
                         (arrayE, index) => (

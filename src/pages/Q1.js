@@ -55,6 +55,7 @@ class Q1 extends Component {
     render() {
         return (
             <>
+                <h4>Register teacher and one or more students</h4>
                 <div >
                     <button className="btn btn-primary" onClick={() => {
                         this.setState({ array: [...this.state.array, "student"] })
@@ -63,8 +64,6 @@ class Q1 extends Component {
                     }}>add student</button>
                 </div>
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
-                    <h4>Im Q1</h4>
-
                     <div className="form-group">
                         <label htmlFor="teacher">teacher</label>
                         <TextInput name="teacher" id="teacher" type="email" required />
@@ -78,7 +77,6 @@ class Q1 extends Component {
                             </div>
                         )
                     )}
-
                     <div className="form-group">
                         <button className="btn btn-primary">Submit</button>
                     </div>
