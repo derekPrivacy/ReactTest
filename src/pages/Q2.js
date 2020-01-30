@@ -40,7 +40,7 @@ async function postHandler(e, inputs) {
 const teacherList = ["teacher", "teacher"];
 const searchResult = [];
 
-class Q1 extends Component {
+class Q2 extends Component {
 
     state = {
         array: teacherList,
@@ -64,11 +64,6 @@ class Q1 extends Component {
                 </div>
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
                     <h4>Im Q2</h4>
-
-                    {/* <div className="form-group">
-                        <label htmlFor="teacher">teacher</label>
-                        <TextInput name="teacher" id="teacher" type="email" required />
-                    </div> */}
 
                     {this.state.array.map(
                         (arrayE, index) => (
@@ -98,4 +93,4 @@ class Q1 extends Component {
     }
 }
 
-export default withRouter(Q1);
+export default withRouter(Q2);

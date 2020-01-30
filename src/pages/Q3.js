@@ -1,59 +1,91 @@
 import React, { Component } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import ToolkitProvider, {
-    Search,
-    CSVExport
-} from "react-bootstrap-table2-toolkit";
-import axios from "axios";
 
 import { withRouter } from "react-router-dom";
-import { getApi } from '../api/get';
-import { deleteApi } from '../api/delete';
+import {
+    ValidationForm,
+    TextInput,
+} from "react-bootstrap4-form-validation";
+
+import { getApi } from '../api/get'
+import { postApi } from '../api/post'
+
+async function postHandler(e, inputs) {
+    e.preventDefault();
+    e.target.reset();
+    console.log(inputs);
 
 
-const { SearchBar, ClearSearchButton } = Search;
-const { ExportCSVButton } = CSVExport;
+    var map = new Map()
 
-function updateHandler() {
-    // console.log("update");
-}
-
-async function deleteHandler(cellContent, row) {
-    // console.log(cellContent);
-    // console.log(row.id);
-    // console.log("delete");
-
-    await deleteApi(`http://localhost:3001/userside/delete`, { "id": row.id })
-}
+    map["student"] = inputs[0]
 
 
+    // var requestString = ``;
 
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc"
+    // Object.keys(inputs).map((key) => {
+    //     console.log(inputs[key])
+    //     if (key == 0) {
+    //         var para = `teacher=` + inputs[key]
+    //         requestString += para;
+    //     } else {
+    //         var para = `&teacher=` + inputs[key]
+    //         requestString += para;
+    //     }
+    // })
+
+    // console.log('http://localhost:3001/api/commonstudents?' + requestString)
+
+    // var answer = await getApi(`http://localhost:3001/api/commonstudents?` + requestString)
+    // console.log(answer)
+
+    console.log("my map" + JSON.stringify(map))
+
+    var result = await postApi("http://localhost:3001/api/suspend", map)
+
+    console.log("whats result + " + JSON.stringify(result))
+
+    if (result == undefined) {
+        window.alert("student record not found");
+    } else {
+        window.alert("suspended");
     }
-];
 
-var data = [];
+}
+
+const studentList = ["student"];
 
 class Q3 extends Component {
 
+    state = {
+        array: studentList,
+    }
+
     async componentDidMount() {
-        let details = await getApi(`http://localhost:3001/userside/getUserDataTable`)
-        if (details) {
-            this.setState({
-                data: details
-            })
-        }
-        // console.log(details)
-        // console.log("yoyo!!" + JSON.stringify(this.state.data));
+        postHandler = postHandler.bind(this)
+        console.log(this.state.array)
     }
 
     render() {
         return (
-            <div>Im Q3</div>
+            <>
+                <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
+                    <h4>Im Q3</h4>
+
+                    {this.state.array.map(
+                        (arrayE, index) => (
+                            <div className="form-group">
+                                <label htmlFor={index}>{arrayE}</label>
+                                <TextInput name={index} id={index} type="email" required />
+                            </div>
+                        )
+                    )}
+
+                    <div className="form-group">
+                        <button className="btn btn-primary">Suspend</button>
+                    </div>
+                </ValidationForm>
+
+            </>
         );
     }
     nextPath(path) {
