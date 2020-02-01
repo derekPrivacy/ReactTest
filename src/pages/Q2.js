@@ -8,7 +8,7 @@ import {
 
 import { getApi } from '../api/get'
 
-import CoolButton from '../atom/Button'
+import Button from '../atom/Button'
 
 async function postHandler(e, inputs) {
     e.preventDefault();
@@ -63,17 +63,12 @@ class Q2 extends Component {
             <>
                 <h4>Retrieve a list of students common to a given list of teachers</h4>
                 <div>
-                    <CoolButton label={"add teacher"} onClick={() => {
+                    <Button label={"add teacher"} onClick={() => {
                         this.setState({ array: [...this.state.array, "teacher"] })
                         console.log(this.state.array)
                     }} />
                 </div>
-                {/* <div>
-                    <button className="btn btn-primary" onClick={() => {
-                        this.setState({ array: [...this.state.array, "teacher"] })
-                        console.log(this.state.array)
-                    }}>add teacher</button>
-                </div> */}
+
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
                     {this.state.array.map(
                         (arrayE, index) => (
@@ -83,11 +78,11 @@ class Q2 extends Component {
                             </div>
                         )
                     )}
-
                     <div className="form-group">
                         <button className="btn btn-primary">Search</button>
                     </div>
                 </ValidationForm>
+
                 <div>common students:</div>
                 {this.state.result.map(
                     (arrayE, index) => (

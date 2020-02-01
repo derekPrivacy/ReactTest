@@ -8,7 +8,7 @@ import {
 
 import { postApi } from '../api/post'
 
-import CoolButton from '../atom/Button'
+import Button from '../atom/Button'
 
 async function postHandler(e, inputs) {
     e.preventDefault();
@@ -59,18 +59,11 @@ class Q1 extends Component {
             <>
                 <h4>Register teacher and one or more students</h4>
                 <div>
-                    <CoolButton label={"add student"} onClick={() => {
+                    <Button label={"add student"} onClick={() => {
                         this.setState({ array: [...this.state.array, "student"] })
                         console.log(this.state.array)
                     }} />
                 </div>
-                {/* <div >
-                    <button className="btn btn-primary" onClick={() => {
-                        this.setState({ array: [...this.state.array, "student"] })
-                        console.log(this.state.array)
-
-                    }}>add student</button>
-                </div> */}
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
                     <div className="form-group">
                         <label htmlFor="teacher">teacher</label>
