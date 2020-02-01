@@ -31,6 +31,10 @@ async function postHandler(e, inputs) {
     var answer = await getApi(`http://localhost:3001/api/commonstudents?` + requestString)
     console.log(answer)
 
+    if (answer.length == 0) {
+        window.alert("student records not found");
+    }
+
     this.setState({
         array: teacherList,
         result: answer
@@ -47,7 +51,7 @@ class Q2 extends Component {
         result: searchResult
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         postHandler = postHandler.bind(this)
         console.log(this.state.array)
     }

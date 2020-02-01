@@ -6,7 +6,6 @@ import {
     TextInput,
 } from "react-bootstrap4-form-validation";
 
-import { getApi } from '../api/get'
 import { postApi } from '../api/post'
 
 async function postHandler(e, inputs) {
@@ -41,7 +40,7 @@ class Q3 extends Component {
         array: studentList,
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         postHandler = postHandler.bind(this)
         console.log(this.state.array)
     }

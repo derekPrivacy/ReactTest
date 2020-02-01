@@ -47,7 +47,7 @@ class Q1 extends Component {
         array: studentList
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         postHandler = postHandler.bind(this)
         console.log(this.state.array)
     }
