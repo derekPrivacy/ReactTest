@@ -8,8 +8,11 @@ import MyNavbar from "./atom/MyNavbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
-  return <MyButton label={"greeting"} />
-  // <MyNavbar />
+  return <MyNavbar />
+  // <MyButton label={"greeting"} onClick={() => {
+  //   console.log("heyheey")
+  // }} />
+
 };
 
 export default App;

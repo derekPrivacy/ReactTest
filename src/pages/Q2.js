@@ -8,6 +8,8 @@ import {
 
 import { getApi } from '../api/get'
 
+import CoolButton from '../atom/Button'
+
 async function postHandler(e, inputs) {
     e.preventDefault();
     e.target.reset();
@@ -61,12 +63,17 @@ class Q2 extends Component {
             <>
                 <h4>Retrieve a list of students common to a given list of teachers</h4>
                 <div>
+                    <CoolButton label={"add teacher"} onClick={() => {
+                        this.setState({ array: [...this.state.array, "teacher"] })
+                        console.log(this.state.array)
+                    }} />
+                </div>
+                {/* <div>
                     <button className="btn btn-primary" onClick={() => {
                         this.setState({ array: [...this.state.array, "teacher"] })
                         console.log(this.state.array)
-
                     }}>add teacher</button>
-                </div>
+                </div> */}
                 <ValidationForm onSubmit={(e, inputs) => postHandler(e, inputs)}>
                     {this.state.array.map(
                         (arrayE, index) => (
