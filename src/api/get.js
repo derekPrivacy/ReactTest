@@ -18,6 +18,7 @@ export function getApi(url) {
         })
         .catch(function (error) {
             console.log(error);
+            return error;
         });
 }
 

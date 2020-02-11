@@ -25,10 +25,17 @@ async function postHandler(e, inputs) {
 
     console.log("whats result + " + JSON.stringify(result))
 
-    if (result == undefined) {
+
+    if (result.isAxiosError) {
+        window.alert(result);
+        this.setState({
+            recipients: []
+        })
+    }
+    else if (result.length == 0) {
         window.alert("student records not found");
         this.setState({
-            recipients: recipientList
+            recipients: []
         })
     } else {
         this.setState({

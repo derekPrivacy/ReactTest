@@ -32,13 +32,19 @@ async function postHandler(e, inputs) {
 
     console.log("my map" + JSON.stringify(map))
 
-    await postApi("http://localhost:3001/api/register", map)
+    var result = await postApi("http://localhost:3001/api/register", map)
+
+    if (result.isAxiosError) {
+        window.alert(result);
+    }
+    else {
+        window.alert("record added");
+    }
 
     this.setState({
         array: studentList
     })
 
-    window.alert("record added");
 }
 
 const studentList = ["student", "student"];

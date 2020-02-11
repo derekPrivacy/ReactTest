@@ -17,6 +17,7 @@ export function postApi(url, row) {
         })
         .catch(function (error) {
             console.log(error);
+            return error;
         });
 }
 
@@ -37,5 +38,6 @@ export function postApiQ4(url, row) {
         })
         .catch(function (error) {
             console.log(error);
+            return error;
         });
 }

@@ -24,9 +24,10 @@ async function postHandler(e, inputs) {
 
     console.log("whats result + " + JSON.stringify(result))
 
-    if (result == undefined) {
-        window.alert("student record not found");
-    } else {
+    if (result.isAxiosError) {
+        window.alert(result);
+    }
+    else {
         window.alert("suspended");
     }
 

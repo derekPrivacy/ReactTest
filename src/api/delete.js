@@ -10,5 +10,6 @@ export function deleteApi(url, para) {
         })
         .catch(function (error) {
             console.log(error);
+            return error;
         });
 }
