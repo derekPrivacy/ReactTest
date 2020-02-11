@@ -1,6 +1,6 @@
 This ReactTest project serve as front-end GUI interface for the NodejsTest project
 
-1. set up NodejsTest project according to the instruction given in https://github.com/derekPrivacy/NodejsTest readme.md
+1. set up NodejsTest project according to the instruction given in https://github.com/derekPrivacy/NodejsORM readme.md
 
 2. pull this repo and do command 
    `yarn`  \
