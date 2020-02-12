@@ -9,9 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   return <MyNavbar />
-  // <MyButton label={"greeting"} onClick={() => {
-  //   console.log("heyheey")
-  // }} />
 
 };
 
