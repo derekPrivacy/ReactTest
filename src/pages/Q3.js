@@ -6,7 +6,7 @@ import {
     TextInput,
 } from "react-bootstrap4-form-validation";
 
-import { postApi } from '../api/post'
+import { postApiQ3 } from '../api/post'
 
 async function postHandler(e, inputs) {
     e.preventDefault();
@@ -20,7 +20,7 @@ async function postHandler(e, inputs) {
 
     console.log("my map" + JSON.stringify(map))
 
-    var result = await postApi("http://localhost:3001/api/suspend", map)
+    var result = await postApiQ3("http://localhost:3001/api/suspend", map)
 
     console.log("whats result + " + JSON.stringify(result))
 
