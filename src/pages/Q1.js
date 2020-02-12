@@ -35,7 +35,7 @@ async function postHandler(e, inputs) {
     var result = await postApi("http://localhost:3001/api/register", map)
 
     if (result.isAxiosError) {
-        window.alert(result);
+        window.alert(`${result} \n ${JSON.stringify(result.response.data.errors)}`);
     }
     else {
         window.alert("record added");

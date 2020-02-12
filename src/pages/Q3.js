@@ -25,7 +25,7 @@ async function postHandler(e, inputs) {
     console.log("whats result + " + JSON.stringify(result))
 
     if (result.isAxiosError) {
-        window.alert(result);
+        window.alert(`${result} \n ${JSON.stringify(result.response.data.errors)}`);
     }
     else {
         window.alert("suspended");

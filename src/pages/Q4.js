@@ -27,7 +27,7 @@ async function postHandler(e, inputs) {
 
 
     if (result.isAxiosError) {
-        window.alert(result);
+        window.alert(`${result} \n ${JSON.stringify(result.response.data.errors)}`);
         this.setState({
             recipients: []
         })

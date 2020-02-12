@@ -34,7 +34,7 @@ async function postHandler(e, inputs) {
     console.log(answer)
 
     if (answer.isAxiosError) {
-        window.alert(answer);
+        window.alert(`${answer} \n ${JSON.stringify(answer.response.data.errors)}`);
         this.setState({
             array: teacherList,
             result: []
