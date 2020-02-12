@@ -13,7 +13,7 @@ async function postHandler(e, inputs) {
     e.target.reset();
     console.log(inputs);
 
-    var map = new Map()
+    var map = {}
 
     map["teacher"] = inputs[0]
     map["notification"] = inputs["notification"]

@@ -17,7 +17,7 @@ async function postHandler(e, inputs) {
 
     // console.log(inputs["teacher"])
 
-    var map = new Map()
+    var map = {}
 
     map["students"] = []
 
